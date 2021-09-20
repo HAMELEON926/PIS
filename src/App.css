@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color:rgb(218, 218, 217);
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 4vmin);
+  color: rgb(54, 56, 46);
+}
+
+.App-body{
+  background-color:rgb(237, 230, 227);
+  height: 85vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(54, 56, 46);
+  overflow: hidden;
+}
+
+.App-footer{
+  background-color:rgb(237, 230, 227);
+  height: 5vh;
+  flex-direction: column;
+  align-items: right;
+  justify-content: right;
+  font-size: calc(5);
+  color: rgb(54, 56, 46);
+}
+
+.nav-tabs .nav-link {
+  color: rgb(54, 56, 46) !important;
+}
+.nav-tabs .nav-link.active {
+  background: rgb(73, 187, 233) !important;
+}
+.TabCase:hover{
+  background: rgb(164, 221, 244) !important;
+}
+
+.CarouselClass{
+  align-self: center;
+  align-content: center;
+}
+
+.carousel-control-prev{
+  color:rgb(54, 56, 46) !important;
+}
+.carousel-control-next{
+  color:rgb(54, 56, 46) !important;
+}
+.carousel-control-prev-icon{
+  visibility: hidden;
+}
+.carousel-control-next-icon{
+  visibility: hidden;
+}
+.CarouselImg{
+  height: 75vh;
+  width: auto;
+}
+
+th, td {
+  min-width: 70px;
+    text-align: center !important;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
