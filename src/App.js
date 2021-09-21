@@ -1,5 +1,6 @@
-// import logo from './logo.svg';
 import './App.css';
+
+import React, { useEffect, useRef } from 'react'
 
 // import Table from 'react-bootstrap/Table';
 import Tabs from 'react-bootstrap/Tabs';
@@ -9,8 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Image from 'react-bootstrap/Image';
 import Carousel from 'react-bootstrap/Carousel';
-import {BootstrapTable, 
-  TableHeaderColumn} from 'react-bootstrap-table';
+
 
 import orange from './orange.png';
 import banana from './banana.jpg';
@@ -18,44 +18,42 @@ import pear from './pear.jpg';
 
 function App() {
 
-  const createTable = () => {
-    let tableObject = [];
+  const tableRowNum = 20;
+  const tableColNum = 40;
 
-    for(let i = 1; i <= 100; i++) {
-      let object = {};
-      for(let j = 1; j <= 100; j++) {
-        object[j] = i;
-      }
-      tableObject.push(object);
+  function tableCreate(object, numRow, numCol){
+    // var body = document.body;
+    var tbl  = document.createElement('table');
+    tbl.style.width  = '100px';
+    tbl.style.border = '1px solid black';
+
+    for(var i = 0; i < numRow; i++){
+        var tr = tbl.insertRow();
+        for(var j = 1; j < numCol; j++){
+            if(i === numRow && j === numCol){
+                break;
+            } else {
+                var td = tr.insertCell();
+                td.appendChild(document.createTextNode('Cell'));
+                td.style.border = '1px solid black';
+                if((i%2===0 && j%2===1) || (i%2===1 && j%2===0)){
+                  td.style.backgroundColor="#49BBE9";
+                } else{
+                  td.style.backgroundColor="#A4DDF4";
+                }
+            }
+        }
     }
+    object.appendChild(tbl);
+    // body.appendChild(tbl);
+  }
 
-    return tableObject;
-  };
-
-  const getColumns = (columnsObject) => {
-    let columns = [];
-
-    for(let cols in columnsObject) {
-      if (cols === "1") {
-        columns.push(
-          <TableHeaderColumn isKey={true} dataField={cols} key={cols}>
-            {cols}
-          </TableHeaderColumn>
-        );
-      } else {
-        columns.push(
-          <TableHeaderColumn dataField={cols} key={cols}>
-            {cols}
-          </TableHeaderColumn>
-        );
-      }
-    }
-
-    return columns;
-
-  };
-
-  const table = createTable();
+  let tabRef = useRef(null);
+  useEffect(() => {
+    if(tabRef.current)
+      tableCreate(tabRef.current, tableRowNum, tableColNum)
+  }, [tabRef]
+  );
 
   return (
     <div className="App">
@@ -135,19 +133,13 @@ function App() {
               </Carousel.Item>
             </Carousel>
           </Tab>
-          <Tab eventKey="table" title="Table" tabClassName = "TabCase"
-          style={{
-            width: "100vw",
-            height: "75vh",
-            overflow: "scroll"
-          }}>
-            <div>
-              <BootstrapTable data={table}>
-                {
-                  getColumns(table[0])
-                }
-              </BootstrapTable>
-            </div>
+          <Tab eventKey="table" title="Table" tabClassName = "TabCase">
+            <div ref={tabRef}
+            style={{
+              width: "100vw",
+              height: "75vh",
+              overflow: "scroll"
+            }}></div>
           </Tab>
         </Tabs>
         </div>
